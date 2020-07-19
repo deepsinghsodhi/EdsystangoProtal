@@ -1,0 +1,33 @@
+{% extends 'firstapp/base.html' %}
+{% block body_block %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<style media="screen">
+#mrgin-top{
+  margin-top:80px;
+}
+#id_logo{
+  margin-top:10px;
+}
+</style>
+
+<div class="container col-lg-11 card card-body bg-light text-center" id="mrgin-top">
+{% if object_list %}
+<table>
+  {% for info in object_list %}
+    <tr><td><h3><img src={{info.logo.url}} height="70" width="250" id="id_logo"></h3> </td></tr>
+      <tr><td>   <h1><strong>{{info.institutename}}</strong></h1></td></tr>
+      <tr><td>  <strong>{{info.targetline}}</strong></td></tr>
+      <tr><td> <span class="fa fa-mobile"> +91-{{info.phone}} </span> | <span class="fa fa-globe"><a href=" https://www.edsystango.com"> {{info.website}}|</span></a>
+      <span class="fa fa-envelope"> {{info.email}}</span></td></tr>
+        <tr><td> <span class="fa fa-road"> {{info.address}}</td></tr>
+          <tr>
+            <td><br></td>
+          </tr>
+          <tr><td> <a href="/updateinstituteinfo/{{info.id}}" class="btn btn-outline-info fa fa-edit">Change</a> </td></tr>
+  {% endfor %}
+</table>
+{% endif %}
+</div>
+{% endblock %}

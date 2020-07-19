@@ -1,0 +1,35 @@
+
+{% extends 'firstapp/base.html' %}
+{% block body_block %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<style media="screen">
+#mrgin-top{
+  margin-top:80px;
+}
+#emp_img{
+  margin-left:70px;
+}
+</style>
+<br><br><br>
+<h1 >All Employee</h1>
+
+
+<div class="container card card-body bg-light text-center" >
+{% if employees %}
+<table>
+  <th>ID</th> <th>Employee Name</th>  <th>Father Name</th>  <th>Employee Type</th>  <th>Status</th>
+{% for employee in employees %}
+  <tr>
+    <td></td><td>{{employee.emp_name}}</td> <td>{{employee.emp_type}}</td> <td></td>
+  </tr
+</table>
+
+
+  {% endfor %}
+{% endif %}
+
+</div>
+</div>
+{% endblock %}

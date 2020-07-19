@@ -1,0 +1,261 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  </head>
+
+  <style>
+  body {font-family: Arial, Helvetica, sans-serif;}
+
+  /* Full-width input fields */
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  /* Set a style for all buttons */
+  button {
+    <!-- background-color: #4CAF50; -->
+    <!-- color: white; -->
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+
+  /* Extra styles for the cancel button */
+  .cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+  }
+
+  /* Center the image and position the close button */
+  .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+  }
+
+  img.avatar {
+    width: 40%;
+    border-radius: 50%;
+  }
+
+  .container {
+    padding: 16px;
+  }
+
+  span.psw {
+    float: right;
+    padding-top: 0px;
+  }
+
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+
+  /* The Close Button (x) */
+  .close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: red;
+    cursor: pointer;
+  }
+
+  /* Add Zoom Animation */
+  .animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+  }
+
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+  }
+
+  @keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+  }
+
+  /* Change styles for span and cancel button on extra small screens */
+  @media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+  }
+
+  .input-hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+input[type=radio]:checked + label>img {
+  border: 1px solid #fff;
+  box-shadow: 0 0 3px 3px #090;
+}
+
+/* Stuff after this is only to make things more pretty */
+input[type=radio] + label>img {
+  border: 1px dashed #444;
+  width: 150px;
+  height: 150px;
+  transition: 500ms all;
+}
+
+input[type=radio]:checked + label>img {
+  transform:
+    rotateZ(0deg)
+    rotateX(180deg);
+    <!-- rotateY(10deg); -->
+}
+
+/*
+ | //lea.verou.me/css3patterns
+ | Because white bgs are boring.
+*/
+
+body{
+  background-image:url("{% static 'img/loginelementbg.jpg'%}");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+}
+#table1{
+  margin-top:20px;
+  margin-left:10px;
+}
+#id_login_element{
+  margin-top:50px;
+  height:450px;
+  background-image:url({% static 'img/loginbg2.jpg' %});
+  background-size:650px;
+  }
+
+</style>
+
+<body>
+
+ <div class="container card card-body bg-transparent col-lg-5" id="id_login_element">
+   <div class="container card card-body bg-transparent col-lg-12">
+    <span align=center> <img src="{% static 'img/edsystangologo2.jpg' %}" alt="" width="350px;"></span>
+     <h3 align=center><span> Login</span></h3>
+   </div>
+  <table id='table1'>
+  <div class="imgcontainer">
+      <th>
+        <input type="radio" name="emotion" id="admin" class="input-hidden"/>
+        <label for="admin"><img src="{% static 'img/admin1.PNG' %}"alt="admin" onclick="document.getElementById('id01').style.display='block'" class="rounded-circle"/></label>
+      </th>
+      <th>
+        <input type="radio" name="emotion" id="employee" class="input-hidden" />
+        <label for="employee"><img src="{% static 'img/employee.jpg' %}" alt="employee" onclick="document.getElementById('id01').style.display='block'"  class="rounded-circle"/></label>
+      </th>
+      <th>
+        <input type="radio" name="emotion" id="student" class="input-hidden" />
+        <label for="student"><img src="{% static 'img/student.jpg' %}" alt="student" onclick="document.getElementById('id01').style.display='block'" class="rounded-circle"/></label>
+      </th>
+      <tr align=center>
+        <td><button onclick="document.getElementById('id01').style.display='block'" class="btn btn-outline-light text-dark" style="width:auto;">Admin Login</button>
+        <td><button onclick="document.getElementById('id01').style.display='block'" class="btn btn-outline-light text-dark" style="width:auto;">Employee Login</button>
+        <td><button onclick="document.getElementById('id01').style.display='block'" class="btn btn-outline-light text-dark" style="width:auto;">Student Login</button>
+      </tr>
+    <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
+  </div>
+  </table>
+</div>
+
+  <div id="id01" class="modal" >
+    <form class="modal-content animate"  method="post" style="background-image:url('{% static "img/loginpop.jpg" %}'); color:white;">
+<!-- <div class="imgcontainer">
+</div> -->
+  <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
+
+
+      <div class="container">
+          <h2><img src="{% static 'img/edsystangologo1.jpg' %}" alt=""> <sub>| Login</sub></h2>
+        {{form | crispy}}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-info col-lg-5"">Login</button>
+      </div>
+
+      <div class="container" style="background-image:url("{% static 'img/loginbg.jpg'%}");">
+        <span class="psw" >Forgot <a href="#" style="color:cyan;">password?</a></span><br>
+        <span class="psw">Don't have an Account? <a href="#" style="color:cyan;">SignUp Now!?</a></span>
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn btn btn-info">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+
+  <script>
+  // Get the modal
+  var modal = document.getElementById('id01');
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+  </script>
+  </body>
+
+  </html>

@@ -1,0 +1,41 @@
+{% extends 'firstapp/base.html' %}
+{% block body_block %}
+{% load static %}
+
+<style media="screen">
+  h3{
+    color:gray;
+    font-family:Impact, Charcoal, sans-serif;
+  }
+  #id_sub{
+    font-family:"Lucida Console", Monaco, monospace;
+  }
+  a:hover{
+    color:green;
+    text-decoration: overline;
+  }
+</style>
+
+<div class="container">
+        <h1>List of All subjects </h1><hr>
+      {% for subj in subjects %}
+      <div class="card card-body bg-light">
+
+        <strong><h3>{{subj.name|upper}}</h3></strong>
+        {% for i in subj.subject_set.all %}
+        <ul id="id_sub">
+          <li>Subject : {{i.sub_category}}</li>
+          <li>Marks Weightage: {{i.marks}}</li>
+        </ul>
+        {% endfor %}
+      </div>
+        <div class="card card-body bg-light col-lg-5">
+            <a href="/updateclass/{{subj.id}}" class="btn btn-outline-info">Update</a>&emsp;
+            <a href="/deleteclass/{{subj.id}}"  class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete this item?');" >Delete</a>
+            <hr>
+        </div>
+      {% endfor %}
+</div>
+
+
+{% endblock %}

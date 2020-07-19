@@ -1,0 +1,89 @@
+{% extends 'firstapp/base.html' %}
+{% block body_block %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<style media="screen">
+#mrgin-top{
+  margin-top:100px;
+  margin-left:10px;
+}
+#id_photo{
+  margin-left:70px;
+}
+</style>
+<div class="container" id="mrgin-top">
+
+  {% if student_details %}
+    <div class="card card-body bg-light col-lg-4 text-center content-center" style="background:rgba(210,210,210,1)">
+      <h1 align=center>Student Detail</h1>
+      <img id="id_photo" src="{{student_details.photo.url}}" alt="" height="150" width="150" class="rounded-circle" /><br>
+      <h1>{{student_details.stu_name}}</h1>
+<table border="0" class="text-left">
+
+    <tr>
+      <td>Registration ID:</td> <td>{{student_details.registration_num}}<br></td>
+    </tr>
+    <tr>
+      <td>DOB :</td> <td> {{student_details.birthdate}}</td>
+    </tr>
+    <tr>
+      <td>Admission Date :</td> <td> {{student_details.Admission_date}}</td>
+    </tr>
+    <tr>
+      <td>Class:</td> <td>  {{student_details.name_of_class}}</td>
+    </tr>
+    <tr>
+      <td>Mobile:</td> <td> {{student_details.mobile_num}}</td>
+    </tr>
+    <tr>
+      <td>DOB: </td> <td>{{student_details.birthdate}} </td>
+    </tr>
+    <tr>
+      <td>Reg.No.: </td> <td>   {{student_details.registration_num}}</td>
+    </tr>
+    <tr>
+      <td>Gender: </td> <td>{{student_details.gender}} </td>
+    </tr>
+    <tr>
+      <td>Cast: </td> <td>{{student_details.caste}}</td>
+    </tr>
+
+    <tr>
+      <td>Previous School:</td> <td>  {{student_details.previous_school}}</td>
+    </tr>
+    <tr>
+      <td>Orphan:</td> <td>{{student_details.orphan_student}}</td>
+    </tr>
+    <tr>
+      <td>Religion:</td> <td>{{student_details.religion}}</td>
+    </tr>
+    <tr>
+      <td>Address:</td> <td>{{student_details.address}}</td>
+    </tr>
+    <tr>
+      <td>Father's Name:</td> <td>  {{student_details.father_name}}</td>
+    </tr>
+    <tr>
+      <td>Father's Occupation:</td> <td>{{student_details.father_occupation}}</td>
+    </tr>
+    <tr>
+      <td>Father's Income</td> <td>{{student_details.father_income}}</td>
+    </tr>
+    <tr>
+      <td>Father's Mobile:</td> <td>{{student_details.father_mobile}}</td>
+    </tr>
+    <tr>
+      <td>Mother's Name:</td> <td>{{student_details.mother_name}}</td>
+    </tr>
+    <tr>
+      <td>Mother's Education:</td> <td>  {{student_details.mother_education}}</td>
+    </tr>
+
+     </table>
+
+</div>
+{% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+
+{% extends 'firstapp/base.html' %}
+{% block body_block %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+<style media="screen">
+  body
+  {
+      counter-reset: Count-Value;
+  }
+  /* table
+  {
+      border-collapse: separate;
+  } */
+  tr td:first-child:before
+  {
+    counter-increment: Count-Value;
+    content: counter(Count-Value);
+  }
+</style>
+
+<style media="screen">
+#mrgin-top{
+  margin-top:80px;
+}
+#emp_img{
+  margin-left:70px;
+}
+</style>
+<br><br><br>
+
+
+<table class="table">
+  <th>Sno.</th>   <th>Date</th>   <th>Descrition</th>   <th>Debt</th>   <th>Credit</th>   <th>Net Balance</th>
+
+{% if income_obj %}
+  {% for obj in income_obj %}
+<tr>
+  <td></td>
+  <td>{{obj.income_date}}</td>
+  <td>{{obj.income_description}}</td>
+  <td>-</td>
+  <td>{{obj.income_amount}}</td>
+  <td>{{income_sum}}</td>
+</tr>
+  {% endfor %}
+
+{% endif %}
+
+{% if expense_obj %}
+  {% for obj in expense_obj %}
+<tr>
+  <td></td>
+  <td>{{obj.expense_date}}</td>
+  <td>{{obj.expense_description}}</td>
+  <td>{{obj.expense_amount}}</td>
+  <td>-</td>
+  <td>{{expense_sum}}</td>
+</tr>
+  {% endfor %}
+
+<th></th> <td></td> <td><strong>TOTAL</strong></td> <td><strong>{{expense_sum}}/- Expense</strong></td> <td><strong>{{income_sum}}/- Income</strong></td>
+ <td><strong><script>net = document.write({{income_sum}}-{{expense_sum}})</script>/- Net Profit</strong></td>
+
+{% endif %}
+</table>
+
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'firstapp/base.html' %}
+{% block body_block %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<style media="screen">
+#mrgin-top{
+  margin-top:25px;
+}
+
+</style>
+<div class="container" id="mrgin-top">
+  <h1><br><br><br>All Students</h1>
+{% if letterview %}
+  {% for student in letterview %}
+  <div class="card card-body bg-gray col-lg-3">
+    <img id="id_photo" src="{{student.photo.url}}" alt="" height="150" width="150" class="rounded-circle" /><br>
+    name -{{student.stu_name}}<br>
+    Reg num - {{student.registration_num}}<br>
+    <a href="/admissionletter/{{student.id}}" class="btn btn-outline-dark">Get Admission Letter </a>
+</div>
+  {% endfor %}
+{% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'firstapp/base.html' %}
+{% block body_block %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<br><br><br><br>
+<form class="" action="/search/" method="post">
+{% csrf_token %}
+  <div class="from-group">
+    <div class="col-lg-3">
+      <input type="text" name="srh" class="form-control"  placeholder="name or id....">
+    </div>
+    <label class="col-lg-5">
+      <button type="submit" class="btn btn-outline-danger">Search</button>
+    </label>
+  </div>
+</form>
+
+<div class="container">
+  {% if sr %}
+    {% for k in sr %}
+    <img src="{{k.photo.url}}" alt="" height="150" width="150" class="rounded-circle" /><br>
+<table>
+  <tr>
+    <td>Student Name: </td>  <td>{{k.stu_name}}</td>
+  </tr>
+  <tr>
+    <td>Student Name: </td>  <td>{{k.stu_name}}</td>
+  </tr>
+  <tr>
+    <td>Reg. Num.: </td>  <td>{{k.registration_num}}</td>
+  </tr>
+</table>
+
+
+    {% endfor %}
+  {% endif %}
+</div>
+
+{% endblock %}
