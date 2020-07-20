@@ -1,0 +1,63 @@
+{% extends 'firstapp/base.html' %}
+{% block body_block %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<style media="screen">
+#mrgin-top{
+  margin-top:80px;
+}
+</style>
+
+<br><br><br>
+<h1 align=center>Please Mark Attendence for Employee</h1>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>         <th>Name</th>             <th>Father Name</th>      <th>Employee Type</th>   <th>Status</th>
+      </tr>
+    </thead>
+{% if allemp %}
+  {% for emp in allemp %}
+
+  <form class="" action="" method="post">
+
+  <tr>
+
+    <td name="empid" id="emplid">{{emp.id}}</td>
+    <input type="hidden" name="empid" value="{{emp.id}}">
+
+    <td name="empname" id="empname">{{emp.emp_name}}</td>
+    <input type="hidden" name="empname" value="{{emp.emp_name}}">
+
+    <td name="empfathername" id="empfathername">--</td>
+    <input type="hidden" name="empname" value="{{emp.emp_name}}">
+
+    <td name="emptype" id="emptype">{{emp.emp_type}}</td>
+    <input type="hidden" name="emptype" value="{{emp.emp_type}}">
+
+    <td>
+        <input type="radio" name="x" id="present{{emp.id}}" value="P">
+        <label for="present{{emp.id}}">P</label>
+        <input type="radio" name="x" id="absent{{emp.id}}" value="A">
+        <label for="absent{{emp.id}}">A</label>
+        <input type="radio" name="x" id="leave{{emp.id}}" value="L">
+        <label for="leave{{emp.id}}">L</label>
+    </td>
+  </tr>
+
+</form>
+  {% endfor %}
+{% endif %}
+
+<tr>
+  <td>
+    <input type="submit" name="submit" value="Submit" class="btn btn-danger">
+  </td>
+</tr>
+</table>
+
+
+
+{% endblock %}

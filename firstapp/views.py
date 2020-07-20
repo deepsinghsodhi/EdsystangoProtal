@@ -332,21 +332,68 @@ def AllClassAttendance(request):
 #         form.save()
 #     return render(request, 'firstapp/studentattendance.html', {'allclass':allclass})
 
+'''
 def StudentAttendance(request, pk):
-
     allclass = EdsysClass.objects.get(id=pk)
     if request.method == 'POST':
-        name = request.POST.get('name')
-        id = request.POST.get('id')
-        classto = 'java'
+        name = request.POST.get('studentname')
+        id = request.POST.get('studentid')
+        classes = request.POST.get('class')
+        # date = request.POST.get('date')
+        date = "2020-12-06"
         val = request.POST.get('x')
-        form = Attendance(date=date, Class=classto, StudentName=name, status=val)
+        form = Attendance(date=date, Class=classes, StudentName=name, status=val)
         form.save()
-        # print(id, name, classto)
+        return HttpResponseRedirect("/allclassattendance/")
+    return render(request, 'firstapp/studentattendance.html', {'allclass':allclass})
+'''
+
+            #View for saving student attendance
+def StudentAttendance(request, pk):
+    allclass = EdsysClass.objects.get(id=pk)
+    if request.method == 'POST':
+        # count = request.POST['count']
+        # for i in count:
+
+        name = request.POST.get('studentname')
+        sid = request.POST.get('studentid')
+        classes = request.POST.get('class')
+        date = "2020-12-06"
+        val = request.POST.get('x')
+
+        data = Attendance.objects.create(
+                                # id = sid,
+                                Class = classes,
+                                date = date,
+                                StudentName = name,
+                                status = val,
+                            )
+        data.save()
+        # return HttpResponse("/studentattendance")
     return render(request, 'firstapp/studentattendance.html', {'allclass':allclass})
 
+            # ListView For Student Attendance Report.
+class StudentAttedanceReport(ListView):
+    model = Attendance
+    context_object_name = "studentreport"
+    template_name = "firstapp/studentattendancereport.html"
 
-class EmployeeAttend(ListView):
-    model = Employee
-    template_name = 'firstapp/employeeattend.html'
-    context_object_name = 'employees'
+class EmployeeAttedanceReport(ListView):
+    model = Attendance
+    context_object_name = "studentreport"
+    template_name = "firstapp/studentattendancereport.html"
+
+
+def EmployeeAttendance(request):
+    allemp = Employee.objects.all()
+    return render(request, 'firstapp/employeeattendance.html', {'allemp':allemp})
+    # if request.method == 'POST':
+    #     name = request.POST.get('name')
+    #     id = request.POST.get('id')
+    #     father = request.POST.get('father name')
+    #     etype = request.POST.get('employee type')
+    #     val = request.POST.get('x')
+
+        # form = Attendance(date=date, Class=classto, StudentName=name, status=val)
+        # form.save()
+        # print(id, name, classto)

@@ -13,8 +13,11 @@
 <h1>All Classes</h1>
 {% if classes %}
   {% for class in classes %}
-  <div class="card card-body col-lg-4">
-  <a href="#">{{class.name|upper}}</a>
+  
+  <div class="card card-body col-lg-2">
+  <img src="{% static 'img/allclass.png' %}" alt="" width="150">
+  <span align=center><strong>{{class.name|upper}}</strong></span>
+
 </div>
   {% endfor %}
 {% endif %}

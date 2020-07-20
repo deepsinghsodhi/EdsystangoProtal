@@ -3,36 +3,114 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+  $(document).on('submit', '#form', function(e){
+            e.preventDefault();
+
+            $.ajax({
+              url:'/studentattendance/{{allclass.id}}/',
+              type:'POST',
+              headers: {'X-CSRFToken': '{{ csrf_token }}'},
+              data:{
+                  studentname:$('#studentname').val(),
+                  studentid:$('#studentid').val(),
+                  class:$('#class').val(),
+                  x:$("input:radio[name=x]:checked").val(),
+                  csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                  },
+              success:function(){
+                      alert("Attendance saved!");
+                }
+  });
+});
+
+
+</script>
+
+
+<!--
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+$("input[type='submit']").click(function(e){
+
+
+      $.ajax({
+
+            url:'/studentattendance/{{allclass.id}}',
+            type:'post',
+            headers: {'X-CSRFToken': '{{ csrf_token }}'},
+            data:{
+              'studentname':$('#studentname').val(),
+              // 'x':$("input:radio[name=x]:checked").val();
+            },
+            success:function(response){
+              if(response.is_exists){
+              $('#result').html('Username is already Present')
+                alert("user marked")
+              }
+              else {
+                $('#result').html('Present')
+              }
+            },
+            error: function (response) {
+         //Error here
+         alert('hello');
+       }
+        console.log("heyyyyyyyyyyyyyyyyyy");
+          })
+          e.preventDefault()
+          $(this).css('background-color','green');
+    });
+
+});
+
+</script> -->
+
+
 <style media="screen">
 #mrgin-top{
   margin-top:80px;
 }
 </style>
 
+<br><br><br><br><br>
+
+
+
+
 <br><br><br>
+
 <h1 align=center>Please Mark Attendence For "{{allclass|upper}}" Class</h1>
 
 <table class="table table-hover">
     <thead>
       <tr>
-        <th>ID</th>   <th>Date</th>   <th>Name</th>   <th>Course</th>   <th>Attend</th>   <th>Mark/Update</th>
+        <th>ID</th>   <th>Name</th>   <th>Course</th>   <th>Attendance</th>   <th>Mark/Update</th>
       </tr>
     </thead>
 {% if allclass %}
   {% for student in allclass.student_set.all %}
-    <form id=form action="/studentattendance/{{allclass.id}}" method="post">
-
+  <form id="form" method="post">
+    {% csrf_token %}
   <tr>
 
     <td name="studentid" id="studentid">{{student.id}}</td>
     <input type="hidden" name="studentid" value="{{student.id}}">
 
-    <td name="date" id="date">12-12-2020</td>
+
 
     <td name="studentname" id="studentname">{{student.stu_name}}</td>
-    <input type="hidden" name="studentname" value="{{student}}">
+    <input type="hidden" name="studentname" value="{{student.stu_name}}">
 
-    <td name="classto" value="classto">{{allclass.name}}</td>
+    <td name="class" id="class">{{allclass}}</td>
+    <input type="hidden" name="class" value="{{allclass}}">
+
 
     <td>
         <input type="radio" name="x" id="present{{student.id}}" value="P">
@@ -42,17 +120,17 @@
         <input type="radio" name="x" id="leave{{student.id}}" value="L">
         <label for="leave{{student.id}}">L</label>
     </td>
-  </tr>
 
-  </form>
+
+
+  <td>
+     <input type="submit" id="submit" class="btn btn-danger" name="submit" value="submit">
+   </td>
+</form>
   {% endfor %}
+
 {% endif %}
 
-<tr>
-  <td>
-    <input type="submit" name="submit" value="Submit" class="btn btn-danger">
-  </td>
-</tr>
 </table>
 
 

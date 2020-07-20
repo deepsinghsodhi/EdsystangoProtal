@@ -100,3 +100,5 @@ class Attendance(models.Model):
     Class = models.CharField(max_length=50)
     StudentName = models.CharField(max_length = 50)
     status = models.CharField(max_length=20)
+    def __str__(self):
+        return (self.StudentName)

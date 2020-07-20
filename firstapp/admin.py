@@ -16,6 +16,8 @@ class IncomeAdminPage(admin.ModelAdmin):
     list_fiter = ['income_description']
     list_editable = ['income_amount']
 
+class AttendanceAdminPage(admin.ModelAdmin):
+    list_display = ['StudentName', 'Class', 'id']
 
 admin.site.register(InstituteInfo)
 admin.site.register(EdsysClass)

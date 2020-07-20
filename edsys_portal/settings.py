@@ -126,5 +126,5 @@ STATICFILES_DIRS = [BASE_DIR, 'statics']
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = "/viewallclass"
+LOGIN_REDIRECT_URL = "/dashboard"
 LOGOUT_REDIRECT_URL = "/accounts/login"

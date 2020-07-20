@@ -61,6 +61,9 @@ urlpatterns = [
                 # STUDENT ATTENDANCE------------------.>>>>>>>>>>>>>>>>>>
     path('allclassattendance/', views.AllClassAttendance, name='all_class_attendance_view'),
     path('studentattendance/<int:pk>', views.StudentAttendance, name='student_attendance'),
-    path('employeeattend/', views.EmployeeAttend.as_view(), name='employee_attendance'),
+    path('employeeattendace/', views.EmployeeAttendance, name='employee_attendance'),
+    path('studentattreport/', views.StudentAttedanceReport.as_view(), name='student_attendance_report'),
+    path('employeeattreport/', views.EmployeeAttedanceReport.as_view(), name='employee_attendance_report'),
+
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
