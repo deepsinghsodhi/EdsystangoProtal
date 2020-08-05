@@ -1,0 +1,75 @@
+{% extends 'firstapp/base.html' %}
+{% block body_block %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<style media="screen">
+#mrgin-top{
+  margin-top:80px;
+}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $("#id_DiscountFee").keyup(function(){
+      var monthfee = $("#id_MonthlyFee").val()
+      var admission = $("#id_AdmissionFee").val()
+      var registration = $("#id_RegistrtionFee").val()
+      var previous = $("#id_PreviousBalance").val()
+      var discount = $("#id_DiscountFee").val()
+      var total = parseInt(monthfee) + parseInt(admission) + parseInt(registration) + parseInt(previous)
+      var totalafter = total - parseInt(total * discount/100)
+      $("#id_Total").val(totalafter)
+    })
+    $("#id_MonthlyFee").keyup(function(){
+      var monthfee = $("#id_MonthlyFee").val()
+      $("#id_Total").val(parseInt(monthfee))
+    })
+    $("#id_AdmissionFee").keyup(function(){
+      var monthfee = $("#id_MonthlyFee").val()
+      var admission = $("#id_AdmissionFee").val()
+      var total = parseInt(monthfee) + parseInt(admission)
+      $("#id_Total").val(total)
+    })
+
+
+    $("#id_RegistrtionFee").keyup(function(){
+      var monthfee = $("#id_MonthlyFee").val()
+      var admission = $("#id_AdmissionFee").val()
+      var registration = $("#id_RegistrtionFee").val()
+      var total = parseInt(monthfee) + parseInt(admission) + parseInt(registration)
+      $("#id_Total").val(total).disable = true;
+    })
+
+    $("#id_Deposit").keyup(function(){
+      var totalfinal = $("#id_Total").val()
+      var deposit = $("#id_Deposit").val()
+      var due = parseInt(totalfinal) - parseInt(deposit)
+      $("#id_DueBalance").val(due)
+    })
+
+  });
+</script>
+
+<center>
+<h3 id='mrgin-top'>Submit/update fees </h3>
+</center>
+<div class="row justify-content-center">
+  <div class="col-lg-4">
+    <form method="post">
+
+      <table>
+        {{form.as_table }}
+        {% csrf_token %}
+      </table>
+      <input type="submit" name="" class="btn btn-info" value="Submit">
+    </form>
+  </div>
+
+</div>
+
+
+
+{% endblock %}

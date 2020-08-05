@@ -65,5 +65,14 @@ urlpatterns = [
     path('studentattreport/', views.StudentAttedanceReport.as_view(), name='student_attendance_report'),
     path('employeeattreport/', views.EmployeeAttedanceReport.as_view(), name='employee_attendance_report'),
 
+                    # Fees Section------------------------------------>>>>>>>>>>>>>
+    path('feesclassview/', views.FeesClassView, name='fees_class_view'),
+    path('feesstudentview/<int:pk>', views.FeesStudentView, name='fees_student_view'),
+    path('getfeeslip/', views.FeeSearchReceipt),
+    path('feelist/',views.ViewFeeStatus.as_view()),
+
+    path('sendmail/<int:pk>',views.SendMail),
+    path('feereceiptsearch/',views.FeeSearchReceipt),
+    path('printfee/<int:pk>',views.PrintFee),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

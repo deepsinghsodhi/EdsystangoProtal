@@ -103,8 +103,6 @@ $("input[type='submit']").click(function(e){
     <td name="studentid" id="studentid">{{student.id}}</td>
     <input type="hidden" name="studentid" value="{{student.id}}">
 
-
-
     <td name="studentname" id="studentname">{{student.stu_name}}</td>
     <input type="hidden" name="studentname" value="{{student.stu_name}}">
 
@@ -123,16 +121,15 @@ $("input[type='submit']").click(function(e){
 
 
 
-  <td>
-     <input type="submit" id="submit" class="btn btn-danger" name="submit" value="submit">
-   </td>
-</form>
+
+    <input type="submit" id="submit" class="btn btn-danger" name="submit" value="submit">
+  </form>
+
   {% endfor %}
 
+
 {% endif %}
-
 </table>
-
 
 
 {% endblock %}

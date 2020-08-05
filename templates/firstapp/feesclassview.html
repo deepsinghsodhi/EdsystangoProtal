@@ -1,0 +1,32 @@
+{% extends 'firstapp/base.html' %}
+{% block body_block %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<style media="screen">
+#mrgin-top{
+  margin-top:80px;
+}
+</style>
+
+<div class="container card card-body bg-light" id="mrgin-top">
+  <form method="post">
+    {% csrf_token %}
+    <h1>Search Student For Fee Submission</h1>
+      <div class="card card-body col-lg-4">
+      {% if classes %}
+        <select class="dropdown" name="dropdownlist" id="classes">
+          <option value="">----SELECT CLASS----</option>
+            {% for class in classes %}
+              <option value="/{{class.id}}">{{class.name|upper}}</option>
+            {% endfor %}
+      {% endif %}
+    </select>
+  </div>
+    <br><br>
+    <input type="submit" name="search" value="search" class='btn btn-danger'>
+  </form>
+</div>
+
+
+{% endblock %}

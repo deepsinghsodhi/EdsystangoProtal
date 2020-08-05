@@ -1,5 +1,5 @@
 from django.contrib import admin
-from firstapp.models import EdsysClass, Subject, InstituteInfo, Student, Employee, Income, Expense, StudentAttendance, Attendance
+from firstapp.models import EdsysClass, Subject, InstituteInfo, Student, Employee, Income, Expense, StudentAttendance, Attendance, FeeSubmission
 # Register your models here.
 
 class ExpenseAdminPage(admin.ModelAdmin):
@@ -26,6 +26,7 @@ admin.site.register(Student)
 admin.site.register(Employee)
 admin.site.register(StudentAttendance)
 admin.site.register(Attendance)
+admin.site.register(FeeSubmission)
 
 admin.site.register(Income, IncomeAdminPage)
 admin.site.register(Expense, ExpenseAdminPage)

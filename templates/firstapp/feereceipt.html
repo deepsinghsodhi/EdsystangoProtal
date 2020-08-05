@@ -1,0 +1,11 @@
+{% extends 'firstapp/base.html' %}
+{% block base %}
+<center><h4>Enter Registration Number For Fee Receipt</h4><hr>
+<form  method="post">
+  <input type="text" name="search" value=""><br><br>
+  <input type="submit" class = "btn btn-info" name="create" value="Submit">
+{% csrf_token %}
+</form>
+</center>
+
+{% endblock %}

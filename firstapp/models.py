@@ -102,3 +102,17 @@ class Attendance(models.Model):
     status = models.CharField(max_length=20)
     def __str__(self):
         return (self.StudentName)
+
+class FeeSubmission(models.Model):
+    FeeDate = models.DateField()
+    RegistrtionId = models.IntegerField()
+    StudentName = models.CharField(max_length=255)
+    StudentClass = models.CharField(max_length=255)
+    MonthlyFee = models.IntegerField()
+    AdmissionFee =models.IntegerField()
+    RegistrtionFee = models.IntegerField()
+    PreviousBalance = models.IntegerField()
+    DiscountFee = models.IntegerField()
+    Total = models.IntegerField()
+    Deposit = models.IntegerField()
+    DueBalance = models.IntegerField()

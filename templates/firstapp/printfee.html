@@ -1,0 +1,18 @@
+{% extends 'portalapp/base.html' %}
+{% load static %}
+{% block base %}
+<center>
+<div style="background-image:url('{%static 'images/background.jpg' %}'); height:595px; width:500px;"><br>
+<img src="{% static 'images/student.png' %}" class="img-circle" style="width:100px;height:100px;"><br>
+<h4>{{obj.StudentName}}</h4>
+<div class="" style="padding:-10%">
+  Fee Submission Date: <b>{{obj.FeeDate}}</b><hr style="width:50%">
+  Class: <b>{{obj.StudentClass}}</b><hr style="width:50%">
+  Discount Fee : <b>{{obj.DiscountFee}}%</b><hr style="width:50%">
+  Total Fees : <b>{{obj.MonthlyFee}}</b><hr style="width:50%">
+  Deposited Fee : <b>{{obj.Deposit}}</b><hr style="width:50%">
+  Due Fee :<b>{{obj.DueBalance}}</b><hr style="width:50%">
+  <input type="submit" class="btn btn-info" name="" value="Print">
+</div>
+</div>
+{% endblock %}
