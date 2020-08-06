@@ -1,6 +1,14 @@
+
 {% extends 'firstapp/base.html' %}
 {% block body_block %}
-<center><h4>Enter Registration Number For Fee Receipt</h4><hr>
+
+<style media="screen">
+#mrgin-top{
+  margin-top:80px;
+}
+
+</style>
+<center><h4 id= 'mrgin-top'>Enter Registration Number For Fee Receipt</h4><hr>
 <form  method="post">
   <input type="text" name="search" value=""><br><br>
   <input type="submit" class = "btn btn-info" name="create" value="Submit">

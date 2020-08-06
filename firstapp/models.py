@@ -37,6 +37,7 @@ class Student(models.Model):
     RELIGION_CHOICES = (('buddhism','Buddhism'),('christianity','Christianity'),('hinduism','Hinduism'),('islam','Islam'),('jainism','Jainism'),('sikhism','Sikhism'),('other','Other'))
     stu_name = models.CharField(max_length = 30)
     registration_num = models.IntegerField()
+    email = models.CharField(max_length=50, default="")
     Admission_date = models.DateField()
     photo = models.FileField(upload_to = "images",default = "student_icon.png")
     mobile_num = models.IntegerField(null=False, blank=False, unique=True)
@@ -116,3 +117,5 @@ class FeeSubmission(models.Model):
     Total = models.IntegerField()
     Deposit = models.IntegerField()
     DueBalance = models.IntegerField()
+    def __str__(self):
+        return (self.StudentName)

@@ -7,6 +7,8 @@ from django.views.generic import CreateView, UpdateView, DeleteView, DetailView,
 from firstapp.models import EdsysClass, Subject, InstituteInfo, Student, Employee, Income, Expense, Attendance, StudentAttendance, FeeSubmission
 from django.urls import reverse
 from django.db.models import Q, Sum
+from django.conf import settings
+from django.core.mail import send_mail
 # Create your views here.
 
 
@@ -429,16 +431,12 @@ def FeeSubmit(request,pk):
 #         obj = FeeSubmission.objects.get(registration_num=val)
 #         return HttpResponse('/printfee/'+val)
 #     return render(request, 'firstapp/feereceipt.html')
-#
 
-
-# 
-# class FeeUpdate(UpdateView):
-#     model = FeeSubmission
-#     fields = '__all__'
-#
-#     def get_success_url(self):
-#             return reverse('dashboard')
+class FeeUpdate(UpdateView):
+    model = FeeSubmission
+    fields = '__all__'
+    def get_success_url(self):
+            return reverse('dashboard')
 
 class ViewFeeStatus(ListView):
     model = FeeSubmission
@@ -446,10 +444,10 @@ class ViewFeeStatus(ListView):
         return FeeSubmission.objects.filter(DueBalance__gt = 0)
 
 def SendMail(request,pk):
-    obj = Student.objects.get(RegistrtionNo=pk)
+    obj = Student.objects.get(registration_num=pk)
     subject = "Fee Alert from Edsystango !"
-    message = "Hope you are doing well,"+ obj.StudentName + "You have your fees due.You can avail our services by paying in.This is an auto generated mail.For any query,write to admin@gmail.com"
-    recipient_list =[obj.Email]
+    message = "Gentle Reminder From Edsystango,"+ obj.stu_name + "Submit your fees."
+    recipient_list =[obj.email]
     email_from = settings.EMAIL_HOST_USER
     send_mail(subject,message,email_from,recipient_list)
     return HttpResponseRedirect('/dashboard')
@@ -459,9 +457,8 @@ def FeeSearchReceipt(request):
         val = request.POST.get('search')
         obj = FeeSubmission.objects.get(RegistrtionId=val)
         return HttpResponseRedirect('/printfee/'+val)
-    return render(request,'portalapp/feereceiptsearch.html')
-
+    return render(request,'firstapp/feereceiptsearch.html')
 
 def PrintFee(request,pk):
     obj = FeeSubmission.objects.get(RegistrtionId=pk)
-    return render(request,'portalapp/printfee.html',{'obj':obj})
+    return render(request,'firstapp/printfee.html',{'obj':obj})

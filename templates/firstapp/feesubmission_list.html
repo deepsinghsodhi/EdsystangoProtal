@@ -1,0 +1,38 @@
+{% extends 'firstapp/base.html' %}
+{% block body_block %}
+<style media="screen">
+#mrgin-top{
+  margin-top:100px;
+}
+</style>
+
+<h1  id="mrgin-top" align=center>Due Fees</h1>
+{% if feesubmission_list %}
+<table class="table table-hover">
+  <tr>
+    <th>Fee Date</th>
+    <th>Registration Id</th>
+    <th>Student Name</th>
+    <th>Student Class</th>
+    <th>Total fee </th>
+    <th>Deposited Fee </th>
+    <th>Due Fee </th>
+    <th>Actions </th>
+  </tr>
+
+{% for i in feesubmission_list %}
+
+<tr>
+  <td>{{i.FeeDate}}</td>
+  <td>{{i.RegistrtionId}}</td>
+  <td>{{i.StudentName}}</td>
+  <td>{{i.StudentClass}}</td>
+  <td>{{i.Total}}</td>
+  <td>{{i.Deposit}}</td>
+  <td style="color:red;">{{i.DueBalance}}</td>
+  <td><a href="/sendmail/{{i.RegistrtionId}}"><i class="fa fa-envelope fa-2x" aria-hidden="true" style="color:#707070;"></i></a></td>
+</tr>
+{% endfor %}
+{% endif %}
+</table>
+{% endblock %}

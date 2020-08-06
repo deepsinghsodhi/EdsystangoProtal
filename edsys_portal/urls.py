@@ -67,12 +67,14 @@ urlpatterns = [
 
                     # Fees Section------------------------------------>>>>>>>>>>>>>
     path('feesclassview/', views.FeesClassView, name='fees_class_view'),
+    path('feesubmit/<int:pk>', views.FeeSubmit, name='fees_submit'),
+    path('feeupdate/<int:pk>', views.FeeUpdate.as_view(), name='fees_update'),
     path('feesstudentview/<int:pk>', views.FeesStudentView, name='fees_student_view'),
     path('getfeeslip/', views.FeeSearchReceipt),
     path('feelist/',views.ViewFeeStatus.as_view()),
 
-    path('sendmail/<int:pk>',views.SendMail),
     path('feereceiptsearch/',views.FeeSearchReceipt),
     path('printfee/<int:pk>',views.PrintFee),
+    path('sendmail/<int:pk>',views.SendMail),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
