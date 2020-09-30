@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 # Create your models here.
+nice project
 
 class EdsysClass(models.Model):
     name = models.CharField(max_length = 50)
